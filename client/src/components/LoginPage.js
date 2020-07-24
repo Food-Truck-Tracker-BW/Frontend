@@ -2,7 +2,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Form, Field,formik } from 'formik'
-// import * as yup from "yup"
+import * as yup from "yup"
 
 
 return( <div className="signup-container ">
