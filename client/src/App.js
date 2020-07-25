@@ -32,7 +32,6 @@ function App() {
             className='app-container__button'
             onClick={launchSignUp}
             > I'm a New User </button> 
-            <LoginPage />
           </div>
       }  
     </div>
