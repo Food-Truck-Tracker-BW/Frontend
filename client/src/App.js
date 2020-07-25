@@ -1,8 +1,9 @@
 // * dependencies:
 import React, { useState } from 'react';
 
-import './CSS/index.css';
 
+import './CSS/index.css';
+ 
 // * components: 
 import LoginPage from './components/LoginPage';
 import SignUpForm from './components/SignUpForm';
@@ -21,6 +22,7 @@ function App() {
   return (
     <div className="app-container">
       <div className='app-container__header-img'></div>
+     
 
       {/* * conditionally renders form based on local state isNewUser */}
       {isNewUser
