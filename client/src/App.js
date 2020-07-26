@@ -26,8 +26,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className='app-container__header-img'>
-      </div>
+      <div className='app-container__header-img'></div>
       <div className='header-img__logo'></div>
       <Switch>
           <Route exact path='/'>
@@ -48,7 +47,7 @@ function App() {
           <PrivateRoute exact path='/trucks' component={TruckList} />
           {/* <Route path='/trucks' component={TruckList} /> */}
       </Switch>
-    </div>
+
   )
 };
 

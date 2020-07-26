@@ -1,3 +1,4 @@
+
 // import React, { } from "react"
 // // import { Formik, useField, Form, yupToFormErrors } from "formik"
 // import * as Yup from "yup"
@@ -62,7 +63,6 @@
 
 
 
-
 // const LogInSelect = ({label, ...props}) => {
 //     const [field, meta] = useField(props)
 //     return (
@@ -89,6 +89,7 @@
 //         </>
 //     )
 // }
+
 
 // * dependencies 
 import React, { useState } from 'react';
@@ -202,4 +203,3 @@ const LoginPage = () =>  {
 }
 
 export default LoginPage;
-
