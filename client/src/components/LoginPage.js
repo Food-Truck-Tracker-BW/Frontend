@@ -158,10 +158,11 @@ const LoginPage = () =>  {
     // * submit handler for DB .post to get token and set to localstorage 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('https://food-truck-tracker-be.herokuapp.com/api/login')
+        axios.post('http://localhost:3333/trucks')
         .then((response) => {
-            console.log(response)
-            localStorage.setItem('token', response)
+            console.log(response.data)
+            localStorage.setItem('token', response.data)
+            window.location.assign('/trucks')
         })
         .catch((error) =>  {
             console.log(error)
