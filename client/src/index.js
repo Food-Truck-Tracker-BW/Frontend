@@ -1,6 +1,7 @@
 // * dependencies:
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'typeface-roboto'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 
