@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
-
 import axios from 'axios';
 
 const schema = yup.object().shape({
     name: yup.string().required('Please enter your name').min(2, 'That\'s just your inicials.'),
     location: yup.string().required('Please enter your zip code.').matches(/^[0-9]{5}$/, 'Please enter a valid zip code.'),
-    // truckImg;
+    // ImgOfTruck;
     departureTime: yup.string().required('Please give departure time is the future')
   })
   
   const defaultFormState = {
     name: '',
     location: '',
-    truckImg:'',
-    truckTypes: {
+    imageOfTruck:'',
+    cuisineType: {
         mexican: false,
         americanGastro: false,
         asianFusion: false,
@@ -24,13 +23,13 @@ const schema = yup.object().shape({
         
     },
     departureTime:'',
-    instructions: ''
+    
   }
   
   const defaultErrorState = {
     name: '',
     location: '',
-    truckImg:'',
+    imageOfTruck:'',
     departureTime: '',
   }
   
@@ -73,7 +72,7 @@ const MainObject = () => {
             if (e.target.type === 'file') {
                 setFormState({
                 ...formState,
-                truckImg:e.target.files[0]
+                imageOfTruck:e.target.files[0]
                 })
             }
             
@@ -82,7 +81,7 @@ const MainObject = () => {
 
 
 <form>
-<label htlmFor="img">Select image:
+<label htlmFor="img-link">Select image:
   <input type="file" id="img" name="img" accept="image/*"/>
 
   </label>
@@ -139,9 +138,7 @@ const MainObject = () => {
               Italian
           </label>
         </fieldset>
-        <label>
-                <textarea name='instructions' data-cy='instructions' onChange={handleChange} value={formState.instructions} />
-          </label>
+        
             <button data-cy="submit-button" disabled={isDisabled} type='submit'>Submit</button>
       
 </form>
