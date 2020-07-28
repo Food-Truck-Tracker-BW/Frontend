@@ -6,7 +6,7 @@ import './CSS/index.css';
 // * components: 
 import LoginPage from './components/LoginPage';
 import SignUpForm from './components/SignUpForm';
-
+import MainObject from './components/MainObject';
 function App() {
 
  
@@ -17,7 +17,7 @@ function App() {
     event.preventDefault()
     setIsNewUser(true);
   }
-
+console.log("ghe")
   return (
     <div className="app-container">
       <div className='app-container__header-img'></div>
@@ -35,6 +35,7 @@ function App() {
             <LoginPage />
           </div>
       }  
+      <MainObject />
     </div>
   )
 };

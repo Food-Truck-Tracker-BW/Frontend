@@ -4,12 +4,12 @@ import axios from 'axios';
 
 const schema = yup.object().shape({
   name: yup.string().required('Please enter your name').min(2, 'That\'s just your inicials.'),
-  phone: yup.string().required('Please enter a phone number.').matches(/^[0-9]{10}$/, 'Please enter a valid phone number.')
+  location: yup.string().required('Please enter a phone number.').matches(/^[0-9]{10}$/, 'Please enter a valid phone number.')
 })
 
 const defaultFormState = {
   name: '',
-  phone: '',
+  location: '',
   truckTypes: {
       mexican: false,
       americanGastro: false,
@@ -24,7 +24,7 @@ const defaultFormState = {
 
 const defaultErrorState = {
   name: '',
-  phone: ''
+  location: ''
 }
 
 const OperatorProfile = (props) => {
@@ -58,7 +58,7 @@ const OperatorProfile = (props) => {
               [e.target.name]: e.target.value
           })
       }
-      if (e.target.name === 'name' || e.target.name === 'phone') {
+      if (e.target.name === 'name' || e.target.name === 'location') {
           validate(e);
       }
   }
@@ -79,7 +79,7 @@ const OperatorProfile = (props) => {
                     <input type='text' name='name' onChange={handleChange} data-cy='name' value={formState.name} />
                     {errors.name.length > 0 && <p style={{color:'red'}}>{errors.name}</p>}
           </label>
-          <label>Phone Number
+          <label>phone 
                     <input type='tel' name='phone' onChange={handleChange} data-cy='phone' value={formState.phone} />
                     {errors.phone.length > 0 && <p style={{color:'red'}}>{errors.phone}</p>}
           </label>

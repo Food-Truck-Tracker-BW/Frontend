@@ -66,20 +66,20 @@ function LogIn() {
         }}
         >
             {props => (
-                <FormContainer>
+                <Form>
                     <h1>Log In</h1>
                     <LogInTextInput label="Name" name="name" type="text   " placeholder="Enter username" />
                     <LogInTextInput label="Email" name="email" type="email   " placeholder="Enter Email" />
                     <button type="submit">{props.isSubmitting ? 'Loading...' : 'Log In'}</button>
-                </FormContainer>
+                </Form>
             )}
         </Formik>
     </div>)
 }
-const FormContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    `
+// const FormContainer = styled.div`
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     `
 export default LogIn
