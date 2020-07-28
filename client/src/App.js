@@ -52,8 +52,7 @@ function App() {
           <PrivateRoute exact path='/trucks' component={TruckList} />
           {/* <Route path='/trucks' component={TruckList} /> */}
       </Switch>
-
-
+   </div>
   )
 };
 
