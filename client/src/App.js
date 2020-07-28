@@ -15,6 +15,7 @@ import './CSS/index.css';
 // * components: 
 import LoginPage from './components/LoginPage';
 import SignUpForm from './components/SignUpForm';
+import MainObject from './components/MainObject';
 import TruckList from './components/TruckList';
 
 function App() {
@@ -27,10 +28,12 @@ function App() {
     event.preventDefault()
     setIsNewUser(true);
   }
-
+console.log("ghe")
   return (
     <div className="app-container">
       <div className='app-container__header-img'></div>
+
+
 
       <div className='header-img__logo'></div>
       <Switch>
@@ -52,7 +55,9 @@ function App() {
           <PrivateRoute exact path='/trucks' component={TruckList} />
           {/* <Route path='/trucks' component={TruckList} /> */}
       </Switch>
+      <MainObject />
    </div>
+
   )
 };
 
