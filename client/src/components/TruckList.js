@@ -11,11 +11,11 @@ import TruckCard from './TruckCard';
 const TruckList = () => {
 
     const [ isLoaded, setIsLoaded ] = useState(false);
-    const [ trucks, setTrucks ] = useState([]);
+    const [ trucks, setTrucks ] = useState();
 
 
     useEffect(() => { 
-        axios.get("http://localhost:3333/trucks")
+        axios.get("http://food-truck-tracker-be.herokuapp.com/api/truck")
         .then((response) => {
             console.log(response.data)
             setTrucks(response.data)
@@ -26,16 +26,24 @@ const TruckList = () => {
         })
     }, [])
 
+    console.log('trucks:',trucks)
+
     return(
         <div className='list-container'>
-            Here is the truck list
-            {trucks.map((item) => {
+            {isLoaded
+            ? trucks.trucks.map((item) => {
                 return(
-                    <Link to={`/truck/${item.cuisineType}`}>
+                    <Link to={`/truck/${item.id}`} key={item.id}>
                         <TruckCard key={item.cuisineType} truck={item} />
                     </Link>                
                 )
-            })}
+            })
+            : (<div className='list-container__ajax-message'> Getting Trucks </div>)
+            }
+            
+            
+            
+            
         </div>
     )
     // * each item in the list should link through to single view page 

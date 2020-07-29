@@ -1,14 +1,42 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
 
-const SingleTruck = (props) => {
+import { getItems } from "../actions/truckIndex";
 
+import Item from "./truck";
 
+class ItemView extends React.Component {
+  componentDidMount() {
+    if (this.props.items.length === 0) {
+      this.props.getItems();
+    }
+  }
 
-    return(
-        <div className='single-truck-container'>
-            Am I the truck you expected?
-        </div>
-    )
+  componentDidUpdate(prevProps) {
+    if (prevProps.items.length !== this.props.items.length) {
+      this.props.history.push("/item-list");
+    }
+  }
+
+  render() {
+    return (
+      <Item
+        items={this.props.items}
+        history={this.props.history}
+        match={this.props.match}
+      />
+    );
+  }
 }
 
-export default SingleTruck;
+const mapStateToProps = state => ({
+  items: state.items
+});
+
+export default connect(
+  mapStateToProps,
+  { getItems }
+)(ItemView);
+
+
+// * missing get items file? 

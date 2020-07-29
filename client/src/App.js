@@ -1,6 +1,7 @@
 // * dependencies:
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { createStore } from 'redux';
 
 // * utility  comp
 import PrivateRoute from './components/PrivateRoute';
@@ -16,7 +17,6 @@ import TruckList from './components/TruckList';
 import SingleTruck from './components/SingleTruckView';
 
 function App() {
-
  
   const [ isNewUser, setIsNewUser ] = useState(false);
 
@@ -25,7 +25,9 @@ function App() {
     event.preventDefault()
     setIsNewUser(true);
   }
-console.log("ghe")
+
+ 
+
   return (
     <div className="app-container">
       <div className='app-container__header-img'></div>
