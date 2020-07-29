@@ -1,48 +1,42 @@
 // * dependencies: 
 
-import React, { } from "react"
+import React, { useState } from "react"
 import axios from 'axios';
-import { Formik, useField, Form, } from "formik"
 import * as Yup from "yup"
 
 
-const CustomTextInput = ({label, ...props}) => {
-    const [field, meta] = useField(props)
+// const CustomTextInput = ({label, ...props}) => {
+//     const [field, meta] = useField(props)
 
+//     return (
+//         <>
+//         <label htmlFor={props.id || props.name}>{label}</label>
+//         <input className="text-input" {...field} {...props} />
+//         {meta.touched && meta.error ? (
+//             <div className="error">{meta.error}</div>
+//         ): null}
+//         </>
+//     )
 
-  
-    return (
-        <>
-        <label htmlFor={props.id || props.name}>{label}</label>
-        <input className="text-input" {...field} {...props} />
-        {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
-        ): null}
+// }
 
+// const CustomSelect = ({label, ...props}) => {
+//     const [field, meta] = useField(props)
 
-
-        </>
-    )
-
-}
-
-const CustomSelect = ({label, ...props}) => {
-    const [field, meta] = useField(props)
-
-    return (
-        <>
-        <label htmlFor={props.id || props.name}>{label}</label>
-        <select className="text-input" {...field} {...props} />
-        {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
-        ): null}
+//     return (
+//         <>
+//         <label htmlFor={props.id || props.name}>{label}</label>
+//         <select className="text-input" {...field} {...props} />
+//         {meta.touched && meta.error ? (
+//             <div className="error">{meta.error}</div>
+//         ): null}
 
 
 
-        </>
-    )
+//         </>
+//     )
 
-}
+// }
     
 // const CustomCheckbox = ({children, ...props}) => {
 //     const [field, meta] = useField(props, 'checkbox')
@@ -67,68 +61,103 @@ const CustomSelect = ({label, ...props}) => {
 
 
 function SignUpForm() {
-    return( <div className="signup-container ">
-        <Formik
-        initialValues={{
-            name: '',
-            email: '',
-            password: '',
-            position: '',
-            // acceptedTerms: false,
-        }}
-        validationSchema={Yup.object({
-         name: Yup.string()
-         .min(5, 'Must be at least 5 characters!')
-         .max(10, 'Must be at least 10 chracters!')
-         .required('Required'),
-         email: Yup.string()
-         .email('Invalid email address!')
-         .required('Required'),
-         password: Yup.string()
-         .matches(/(?=.*[a-z])/, 'one lowercase required!')
-         .matches(/(?=.*[A-Z])/, 'one uppercase required!')
-         .matches(/(?=.*[0-9])/, 'one number required!')
-         .min(6, 'Must be at least 6 characters')
-         .required('Required'),
-         passwordConfirm: Yup.string()
-         .oneOf([Yup.ref('password')], 'Password must be the same!')
-         .required('Required'),
-         position: Yup.string()
-         .oneOf(['Diner', 'Food Truck Operator'],)
-         .required('Required'),
+
+    // * local state to handle changes 
+    const [ userInput, setUserInput ] = useState({})
+
+    // * local state to handle error messages 
+    const [errors, setErrors] = useState({
+        email: "",
+        password: ""
+    });
+
+    // * initial values for the form when rendered ofr sign up
+    const initialValues = {
+        name: '',
+        email: '',
+        password: '',
+        position: '',
+        // acceptedTerms: false,
+    }
+
+     // * handle change with validation 
+     const handleChange = e => {
+        e.persist();
+        
+        Yup
+        .reach(formSchema, e.target.name)
+        .validate(e.target.value)
+        .then(valid => {
+            setErrors({
+            ...errors,
+            [e.target.name]: ""
+            });
+        })
+        .catch(err => {
+            setErrors({
+            ...errors,
+            [e.target.name]: err.errors[0]
+            });
+        });
+
+         setUserInput({
+           ...userInput,
+           [e.target.name]: e.target.value
+         })
+    }
+
+    // * defining schema for form validation
+   const formSchema = Yup.object({
+        name: Yup.string()
+        .min(5, 'Must be at least 5 characters!')
+        .max(10, 'Must be at least 10 chracters!')
+        .required('Required'),
+        email: Yup.string()
+        .email('Invalid email address!')
+        .required('Required'),
+        password: Yup.string()
+        .matches(/(?=.*[a-z])/, 'one lowercase required!')
+        .matches(/(?=.*[A-Z])/, 'one uppercase required!')
+        .matches(/(?=.*[0-9])/, 'one number required!')
+        .min(6, 'Must be at least 6 characters')
+        .required('Required'),
+        passwordConfirm: Yup.string()
+        .oneOf([Yup.ref('password')], 'Password must be the same!')
+        .required('Required'),
+        position: Yup.string()
+        .oneOf(['Diner', 'Food Truck Operator'],)
+        .required('Required'),
         //  acceptedTerms: Yup.boolean()
         //   .required('Required')
         //  .oneOf([true], 'You must accept the terms and conditions'),
-        })}
-        onSubmit={(values, {setSubmitting, resetForm}) => {
-            setTimeout(()=> {
-                alert(JSON.stringify(values, null, 2))
-                resetForm()
-                setSubmitting(false)
-            }, 1000)
-        }}
-        >
-            {props => (
-                <Form>
-                    <h1>Sign up</h1>
-                    <CustomTextInput label="Name" name="name" type="text   " placeholder="Enter username" />
-                    <CustomTextInput label="Email" name="email" type="email   " placeholder="Enter Email" />
-                    <CustomTextInput label="Password" name="password" type="password   " placeholder="Enter Password" />
-                    <CustomTextInput label="Confrim Password" name="passwordConfirm" type="password    " placeholder="Confirm Password" />
-                    <CustomSelect  label="Positions" name="postions">
-                        <option value="">Select a position</option>
-                        <option value="Food Diner">Food Diner</option>
-                        <option value="Food Truck Operator">Food Truck Operator</option>
-                    </CustomSelect>
-                      {/* <CustomCheckbox name="acceptedTerms">
-                        I accept the terms and conditions
-                    </CustomCheckbox>  */}
-                    <button type="submit">{props.isSubmitting ? 'Loading...' : 'Sign up'}</button>
+    })
+   
+    const onSubmitHandler  = (event) => {
+        event.preventDefault();
+        window.location.assign("/trucks") 
+    }
 
-                </Form>
-            )}
-        </Formik>
-    </div>)
+    return(
+    <div className="signup-container ">
+        <form onSubmit={onSubmitHandler}>
+            <h1>Sign up</h1>
+            <input label="Name" name="name" type="text   " placeholder="Enter username" />
+            <input label="Email" name="email" type="email   " placeholder="Enter Email" />
+            <input label="Password" name="password" type="password   " placeholder="Enter Password" />
+            <input label="Confrim Password" name="passwordConfirm" type="password    " placeholder="Confirm Password" />
+            <select  label="Positions" name="postions">
+                <option value="">Select a position</option>
+                <option value="Food Diner">Food Diner</option>
+                <option value="Food Truck Operator">Food Truck Operator</option>
+            </select>
+                {/* <CustomCheckbox name="acceptedTerms">
+                I accept the terms and conditions
+            </CustomCheckbox>  */}
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>
+    )
 }
 
 // const SignUpForm = () => {

@@ -92,6 +92,7 @@
 
 
 // * dependencies 
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as Yup from 'yup';
@@ -120,16 +121,6 @@ const LoginPage = () =>  {
         password: ""
     });
 
-    // * input change handler for local state 
-    // const handleChange = (event) => {
-    //     event.preventDefault();
-    //     setUserInput({
-    //         ...userInput,
-    //         [event.target.name]: event.target.value
-    //     })
-    //     console.log(userInput)
-    // }
-
     // * handle change with validation 
     const handleChange = e => {
         e.persist();
@@ -139,8 +130,8 @@ const LoginPage = () =>  {
         .validate(e.target.value)
         .then(valid => {
             setErrors({
-            ...errors,
-            [e.target.name]: ""
+                ...errors,
+                [e.target.name]: ""
             });
         })
         .catch(err => {
@@ -149,7 +140,6 @@ const LoginPage = () =>  {
             [e.target.name]: err.errors[0]
             });
         });
-
          setUserInput({
            ...userInput,
            [e.target.name]: e.target.value

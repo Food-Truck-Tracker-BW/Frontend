@@ -52,7 +52,7 @@ console.log("ghe")
           <PrivateRoute exact path='/trucks' component={TruckList} />
           {/* <Route path='/trucks' component={TruckList} /> */}
       </Switch>
-      <MainObject />
+      
    </div>
 
   )
