@@ -1,15 +1,16 @@
 // * dependencies: 
-<<<<<<< HEAD
+
 import React, { } from "react"
 import { Formik, useField, Form, } from "formik"
 import * as Yup from "yup"
+import axios from 'axios';
 
 const CustomTextInput = ({label, ...props}) => {
     const [field, meta] = useField(props)
-=======
-import React from 'react';
-import axios from 'axios';
->>>>>>> e6d31cccabac852801df8dc0d4d47a7876e572df
+
+
+
+
 
     return (
         <>
