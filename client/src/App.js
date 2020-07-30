@@ -1,6 +1,7 @@
 // * dependencies:
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 // * utility  comp
@@ -13,8 +14,12 @@ import './CSS/index.css';
 import LoginPage from './components/LoginPage';
 import SignUpForm from './components/SignUpForm';
 import TruckList from './components/TruckList';
+import ItemView from './components/SingleTruckView';
 
-function App() {
+// * action creators
+import * as actions from './actions/index';
+
+function App(props) {
  
   const [ isNewUser, setIsNewUser ] = useState(false);
 
@@ -23,8 +28,6 @@ function App() {
     event.preventDefault()
     setIsNewUser(true);
   }
-
- 
 
   return (
     <div className="app-container">
@@ -50,6 +53,12 @@ function App() {
             }
           </Route>
           <PrivateRoute exact path='/trucks' component={TruckList} />
+          <Route 
+                exact path='/truck/:id/' 
+                render={() => (
+                    <ItemView />
+                )}
+            />
           {/* <Route path='/trucks' component={TruckList} /> */}
       </Switch>
       
@@ -58,6 +67,10 @@ function App() {
   )
 };
 
-export default App;
+const mapStateToProps = state => ({ trucks: state.trucks });
+
+export default connect(mapStateToProps, actions)(App)
+
+
 
 

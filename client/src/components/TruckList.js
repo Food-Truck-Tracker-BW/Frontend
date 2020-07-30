@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 // * components:
 import TruckCard from './TruckCard';
-import SingleTruckView from './SingleTruckView';
+import ItemView from './SingleTruckView';
 
 // * action creators
 import * as actions from '../actions/index';
@@ -26,6 +26,10 @@ const TruckList = (props) => {
         props.getTrucks()
     }
 
+    useEffect(() => {
+        props.getTrucks()
+    },[])
+
     return(
         <div className='list-container'>
             {isLoaded
@@ -39,16 +43,15 @@ const TruckList = (props) => {
             : (<button 
                     className='list-container__ajax-message'
                     onClick={populate}
-                
                 > View Trucks </button>)
             }
         
-            <Route 
-                exact path='/truck/:id' 
-                component={() => (
-                    <SingleTruckView />
+            {/* <Route 
+                path='/truck/:id' 
+                render={() => (
+                    <ItemView truckArray={props.trucks} />
                 )}
-            />
+            /> */}
             
             
         </div>

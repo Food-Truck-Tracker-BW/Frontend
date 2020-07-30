@@ -5,6 +5,7 @@ const TruckCard = (props) => {
 
     console.log('card props', props)
 
+    
     return(
         <div className='truck-card-container'>
             <div className='truck-card-container__img-container'>
