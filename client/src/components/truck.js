@@ -27,11 +27,10 @@ function Item(props) {
           <h2>{props.name}</h2>
         </div>
       </div>
-      <Link to={`/item-list/${props.id}`}>
-        <Route path={`/item-list/${props.id}`} component={ItemDescription}>
-          About Us
-        </Route>
-      </Link>
+      <Link to={`/truck/${props.id}/description`}> About Us </Link>
+      <Route path={`/truck/${props.id}/description`} component={() => (
+        <ItemDescription {...props} />
+      )} />
     </div>
   );
 }

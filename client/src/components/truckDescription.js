@@ -1,10 +1,13 @@
 import React from 'react';
 
 function ItemDescription(props) {
-  console.log('in description', props.item);
+  
+  console.log('desc props:', props)
+
   return (
     <div>
-      <p className="item-description">{props.item.description}</p>
+      <p className="truck-location">{props.location}</p>
+      <p className="truck-location">{props.departure}</p>
     </div>
   );
 }

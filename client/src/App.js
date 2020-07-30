@@ -54,7 +54,7 @@ function App(props) {
           </Route>
           <PrivateRoute exact path='/trucks' component={TruckList} />
           <Route 
-                exact path='/truck/:id/' 
+                path='/truck/:id/' 
                 render={() => (
                     <ItemView />
                 )}
