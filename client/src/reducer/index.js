@@ -1,63 +1,51 @@
-// * dependencies
-import React from 'react';
-import axios from 'axios';
-import {
-    GET_USERS,
-    GET_DINER,
-    GET_OPERATOR,
-    GET_USER_BY_ID,
-    GET_TRUCKS_BY_USER_ID,
-    GET_ALL_TRUCKS,
-    GET_ALL_TRUCK_BY_ID,
-    GET_MENUS,
-    GET_LOCATION,
-    GET_RATING,
-    GET_MENU_ITEM,
-    GET_MENU_ITEM_RATING,
-    UPDATE_TRUCK,
-    ADD_TRUCK,
-    ADD_MENU_ITEM,
-    DELETE_USER,
-    DELETE_TRUCK 
-} from '../actions/index';
 
-import store from '../Store';
+// * dependencies
+import rootReducer from '../reducer/index';
+import { applyMiddleware, createStore } from 'redux';
+
+import thunk from 'redux-thunk';
+
+// * actions
+import {GET_ALL_TRUCKS_START} from '../actions/index';
+import {GET_ALL_TRUCKS_SUCCESS} from '../actions/index';
+import {GET_ALL_TRUCKS_FAIL}  from '../actions/index';
+
+
+
+export const store = createStore(
+    reducer,
+    applyMiddleware(thunk)
+);
 
 
 const reducer = (state = store, action) => {
     console.log('reducer overall:', state, action)
     switch(action.type){
-        // ! Getting all users
-        case GET_USERS: 
-        console.log('get user ran')
-        axios.get("http://food-truck-tracker-be.herokuapp.com/api/user")
-        .then((response) => {
-            console.log(response)
+        // ! Get all trucks
+        case GET_ALL_TRUCKS_START:
+            console.log('starting to get trucks AJAX')
             return {
                 ...state,
-                users: response
+                fetchingTrucks: true,
             }
-        })
-        .catch((error) => {
-            console.log('error on get user', error)
-            return state
-        })
+        
+        case GET_ALL_TRUCKS_SUCCESS:
+            console.log('success get truck AJAX')
+            return {
+                ...state,
+                fetchingTrucks: false,
+                trucks: action.payload
+            }
+        case GET_ALL_TRUCKS_FAIL:
+            console.log('failure on get trucks')
+            return {
+                ...state,
+                errors: action.payload
+            }
 
-        // ! Get all trucks
-        case GET_ALL_TRUCKS:
-            console.log('get trucks ran')
-            axios.get('http://food-truck-tracker-be.herokuapp.com/api/truck/')
-            .then((response) =>{
-                console.log('get trucks response:', response)
-                return {
-                    ...state,
-                    trucks: response
-                }
-            })
-            .catch((error) => { 
-                console.log('get trucks error:', error)
-                return state
-            })
+        default:
+            return state;
+
     }
 
 

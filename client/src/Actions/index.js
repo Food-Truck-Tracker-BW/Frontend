@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // http://food-truck-tracker-be.herokuapp.com/
 
 // USERS(GET):
@@ -25,12 +27,34 @@ export const GET_TRUCKS_BY_USER_ID = "GET_TRUCKS_BY_USER_ID";
 // TRUCKS(GET):
 // GET ALL TRUCKS: /api/truck/
 export const GET_ALL_TRUCKS = "GET_ALL_TRUCKS";
-export const getTrucks = () => {
-    return {
-        type: GET_ALL_TRUCKS, 
-        payload: ''
-    }   
+export const GET_ALL_TRUCKS_START = "GET_ALL_TRUCKS_START";
+export const GET_ALL_TRUCKS_SUCCESS = "GET_ALL_TRUCKS_SUCCESS";
+export const GET_ALL_TRUCKS_FAIL = "GET_ALL_TRUCKS_FAIL";
+export const getTrucks = () => dispatch => {
+    dispatch( { type: GET_ALL_TRUCKS_START } )
+    axios.get('http://food-truck-tracker-be.herokuapp.com/api/truck/')
+    .then((response) => {
+        console.log(response);
+        dispatch({ type: GET_ALL_TRUCKS_SUCCESS, payload: response })
+    })
+    .catch((error) => {
+        console.log('get error', error)
+        dispatch({ type: GET_ALL_TRUCKS_FAIL, payload: error })
+    })
 }
+
+
+
+// export const getPokemon = () => dispatch => {
+//     dispatch({ type: FETCH_POKEMON_START });
+//     axios
+//       .get('https://pokeapi.co/api/v2/pokemon/')
+//       .then(res =>
+//         dispatch({ type: FETCH_POKEMON_SUCCESS, payload: res.data.results })
+//       )
+//       .catch(err => dispatch({ type: FETCH_POKEMON_FAIL, payload: err }));
+//   };
+
 
 // GET ALL TRUCK BY ID: /api/truck/:id
 export const GET_ALL_TRUCK_BY_ID = "GET_ALL_TRUCK_BY_ID";
