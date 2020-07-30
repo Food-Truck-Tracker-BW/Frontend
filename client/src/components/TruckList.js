@@ -1,29 +1,24 @@
 // * dependencies 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
-
+import { connect } from 'react-redux';
 
 // * components:
 import TruckCard from './TruckCard';
+import SingleTruckView from './SingleTruckView';
 
+// * action creators
+import { getTrucks } from '../actions/index';
 
-const TruckList = () => {
+const TruckList = (props) => {
 
     const [ isLoaded, setIsLoaded ] = useState(false);
     const [ trucks, setTrucks ] = useState();
 
 
     useEffect(() => { 
-        axios.get("http://food-truck-tracker-be.herokuapp.com/api/truck")
-        .then((response) => {
-            console.log(response.data)
-            setTrucks(response.data)
-            setIsLoaded(true)
-        })
-        .catch((error) => {
-            console.log('get error', error)
-        })
+        setIsLoaded(true)
     }, [])
 
     console.log('trucks:',trucks)
@@ -40,8 +35,13 @@ const TruckList = () => {
             })
             : (<div className='list-container__ajax-message'> Getting Trucks </div>)
             }
-            
-            
+        
+            <Route 
+                exact path='/truck/:id' 
+                component={() => (
+                    <SingleTruckView />
+                )}
+            />
             
             
         </div>
@@ -51,7 +51,13 @@ const TruckList = () => {
     
 };
 
-export default TruckList; 
+const mapStateToProps = state => {
+    return {
+        trucks: state.trucks
+    }
+  }
+
+export default connect(mapStateToProps, { getTrucks })(TruckList)
 
 
 

@@ -18,14 +18,14 @@ function SignUpForm() {
         password: ""
     });
 
-    // * initial values for the form when rendered for sign up
-    const initialValues = {
-        name: '',
-        email: '',
-        password: '',
-        position: '',
-        // acceptedTerms: false,
-    }
+    // // * initial values for the form when rendered for sign up
+    // const initialValues = {
+    //     name: '',
+    //     email: '',
+    //     password: '',
+    //     position: '',
+    //     // acceptedTerms: false,
+    // }
 
      // * handle change with validation 
      const handleChange = e => {
@@ -53,11 +53,12 @@ function SignUpForm() {
            ...userInput,
            [e.target.name]: e.target.value
          })
+         console.log(userInput);
     }
 
     // * defining schema for form validation
    const formSchema = Yup.object({
-        name: Yup.string()
+        username: Yup.string()
         .min(5, 'Must be at least 5 characters!')
         .max(10, 'Must be at least 10 chracters!')
         .required('Required'),
@@ -73,8 +74,8 @@ function SignUpForm() {
         passwordConfirm: Yup.string()
         .oneOf([Yup.ref('password')], 'Password must be the same!')
         .required('Required'),
-        position: Yup.string()
-        .oneOf(['Diner', 'Food Truck Operator'],)
+        is_operator: Yup.string()
+        .oneOf([true , false],)
         .required('Required'),
         //  acceptedTerms: Yup.boolean()
         //   .required('Required')
@@ -83,10 +84,13 @@ function SignUpForm() {
    
     const onSubmitHandler  = (event) => {
         event.preventDefault();
-        axios.post('http://food-truck-tracker-be.herokuapp.com/api/register')
+        
+        delete userInput.passwordConfirm;
+        
+        axios.post('http://food-truck-tracker-be.herokuapp.com/api/register', userInput)
             .then((response) => {
-                console.log(response)
-                localStorage.setItem('token', response)
+                console.log('registration response:', response)
+                localStorage.setItem('token', response.token)
                 window.location.assign("/trucks") 
             })
             .catch((error) => {
@@ -100,8 +104,8 @@ function SignUpForm() {
         <form onSubmit={onSubmitHandler}>
             <h1>Sign up</h1>
             <input 
-                label="Name" 
-                name="name" 
+                label="username" 
+                name="username" 
                 type="text   " 
                 placeholder="Enter username" 
                 onChange={handleChange}
@@ -132,10 +136,10 @@ function SignUpForm() {
             />
             <div>{errors.passwordConfirm}</div>
             
-            <select  label="Positions" name="postions">
+            <select  label="Positions" name="is_operator" onChange={handleChange}>
                 <option value="">Select a position</option>
-                <option value="Food Diner">Food Diner</option>
-                <option value="Food Truck Operator">Food Truck Operator</option>
+                <option value={true}>Food Diner</option>
+                <option value={false}>Food Truck Operator</option>
             </select>
 
             {/* <CustomCheckbox name="acceptedTerms">

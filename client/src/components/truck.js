@@ -1,9 +1,11 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 import ItemDescription from "../components/truckDescription";
 
-function Item({ items, history, match }) {
+function Item({ items, match }) {
+  
+  // * used to find truck being clicked in 
   const item = items.find(thing => `${thing.id}` === match.params.id);
 
   if (!item) {
@@ -20,16 +22,11 @@ function Item({ items, history, match }) {
           <h2>{item.name}</h2>
         </div>
       </div>
-      <nav className="item-sub-nav">
-        <NavLink exact to={`/item-list/${item.id}`}>
+      <Link to={`/item-list/${item.id}`}>
+        <Route path={`/item-list/${item.id}`} component={ItemDescription}>
           About Us
-        </NavLink>
-      </nav>
-      <Route
-        exact
-        path="/item-list/:id"
-        render={props => <ItemDescription {...props} item={item} />}
-      />
+        </Route>
+      </Link>
     </div>
   );
 }

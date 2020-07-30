@@ -1,7 +1,7 @@
 // * dependencies:
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { createStore } from 'redux';
+
 
 // * utility  comp
 import PrivateRoute from './components/PrivateRoute';
@@ -12,9 +12,7 @@ import './CSS/index.css';
 // * components: 
 import LoginPage from './components/LoginPage';
 import SignUpForm from './components/SignUpForm';
-import MainObject from './components/MainObject';
 import TruckList from './components/TruckList';
-import SingleTruck from './components/SingleTruckView';
 
 function App() {
  
