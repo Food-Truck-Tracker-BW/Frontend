@@ -1,24 +1,18 @@
 
-// * dependencies
-import rootReducer from '../reducer/index';
-import { applyMiddleware, createStore } from 'redux';
-
-import thunk from 'redux-thunk';
-
 // * actions
 import {GET_ALL_TRUCKS_START} from '../actions/index';
 import {GET_ALL_TRUCKS_SUCCESS} from '../actions/index';
 import {GET_ALL_TRUCKS_FAIL}  from '../actions/index';
 
 
+const intitialTruckState = {
+    trucks: [],
+    fetchingTrucks: false
+}
 
-export const store = createStore(
-    reducer,
-    applyMiddleware(thunk)
-);
 
 
-const reducer = (state = store, action) => {
+const reducer = (state = intitialTruckState, action) => {
     console.log('reducer overall:', state, action)
     switch(action.type){
         // ! Get all trucks
@@ -34,13 +28,14 @@ const reducer = (state = store, action) => {
             return {
                 ...state,
                 fetchingTrucks: false,
-                trucks: action.payload
+                trucks: action.payload.data.trucks
             }
         case GET_ALL_TRUCKS_FAIL:
             console.log('failure on get trucks')
             return {
                 ...state,
-                errors: action.payload
+                fetchingTrucks: false,
+                errors: action.payload.error
             }
 
         default:
@@ -50,5 +45,8 @@ const reducer = (state = store, action) => {
 
 
 }
+
+
+
 
 export default reducer;
