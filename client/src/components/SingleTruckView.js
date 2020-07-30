@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
-
-import Truck from './truck';
-// import { getItems } from "../actions/truckIndex";
-
-
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+
+// * components
+import Truck from './truck';
+import MainMenu from './MainMenu';
+
 
 // * action creators
 import * as actions from '../actions/index';
@@ -48,19 +49,25 @@ const ItemView = (props) => {
   const { id } = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    if (props.selectedTruck) setIsLoaded(true);
-  }, [props.selectedTruck])
-
+  // * useEffect send dispatcxh to set the selcted truck to state in store 
   useEffect(() => {
     props.getTruckById(id)
   }, [])
 
+  // * useEffect dependent on the updating of selected truck state to render 
+  // * component conditrionally
+  useEffect(() => {
+    if (props.selectedTruck) setIsLoaded(true);
+  }, [props.selectedTruck])
+
+  
   return (
-    isLoaded ?
-      <div>
-        <Truck {...props.selectedTruck} />
-      </div> : <>still loading</>
+    <div className='truck-info-container'>
+      {isLoaded 
+      ? <Truck {...props.selectedTruck} />
+      : <div>still loading</div>}
+
+    </div>
   )
 };
 

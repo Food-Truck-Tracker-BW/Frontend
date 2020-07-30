@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
-import reducer from './reducer/index_truck';
+import reducer from './reducer/truckReducer';
 import thunk from 'redux-thunk';
 
 // * redux

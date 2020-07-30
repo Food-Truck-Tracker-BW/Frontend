@@ -32,7 +32,7 @@ export const GET_ALL_TRUCKS_SUCCESS = "GET_ALL_TRUCKS_SUCCESS";
 export const GET_ALL_TRUCKS_FAIL = "GET_ALL_TRUCKS_FAIL";
 export const getTrucks = () => dispatch => {
     dispatch( { type: GET_ALL_TRUCKS_START } )
-    axios.get('http://food-truck-tracker-be.herokuapp.com/api/truck/')
+    axios.get('https://food-truck-tracker-be.herokuapp.com/api/truck/')
     .then((response) => {
         console.log(response);
         dispatch({ type: GET_ALL_TRUCKS_SUCCESS, payload: response })
@@ -51,7 +51,7 @@ export const GET_ALL_TRUCK_BY_ID_SUCCESS = "GET_ALL_TRUCK_BY_ID_SUCCESS";
 export const GET_ALL_TRUCK_BY_ID_FAIL = "GET_ALL_TRUCK_BY_ID_FAIL";
 export const getTruckById = (id) => dispatch => {
     dispatch( { type: GET_ALL_TRUCK_BY_ID_START } )
-    axios.get(`http://food-truck-tracker-be.herokuapp.com/api/truck/${id}`)
+    axios.get(`https://food-truck-tracker-be.herokuapp.com/api/truck/${id}`)
     .then((response) => {
         console.log(response);
         dispatch({ type: GET_ALL_TRUCK_BY_ID_SUCCESS, payload: response })
@@ -64,6 +64,21 @@ export const getTruckById = (id) => dispatch => {
 
 // GET MENUS: /api/truck/:id/menus
 export const GET_MENUS = "GET_MENUS";
+export const GET_MENUS_START = "GET_MENUS_START";
+export const GET_MENUS_SUCCESS = "GET_MENUS_SUCCESS";
+export const GET_MENUS_FAIL = "GET_MENUS_FAIL";
+export const getMenus = (id) => dispatch => {
+    dispatch( { type: GET_MENUS_START } )
+    axios.get(`https://food-truck-tracker-be.herokuapp.com/api/truck/${id}/menus`)
+    .then((response) => {
+        console.log(response);
+        dispatch({ type: GET_MENUS_SUCCESS, payload: response })
+    })
+    .catch((error) => {
+        console.log('get error', error)
+        dispatch({ type: GET_MENUS_FAIL, payload: error })
+    })
+}
 
 // GET LOCATION: /api/truck/:id/location
 export const GET_LOCATION = "GET_LOCATION";
