@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -65,8 +65,15 @@ const ItemView = (props) => {
     <div className='truck-info-container'>
       {isLoaded 
       ? <Truck {...props.selectedTruck} />
-      : <div>still loading</div>}
+      : <div>still loading</div>
+      }
+      <Route exact path='/truck/:id'>
+        <Link to={`/truck/${id}/menu`}>
+          <button> See Menu </button>
+        </Link>
+      </Route>
 
+      <Route path='/truck/:id/menu' component={MainMenu} />
     </div>
   )
 };

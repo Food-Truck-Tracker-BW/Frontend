@@ -19,11 +19,29 @@ const MainMenu = (props) => {
     if (props.menu) setIsLoaded(true);
   }, [props.menu])
 
+    
+
     return (
         <div>
             {isLoaded
-                ? <h1>Main Menu</h1>
-                : <div>Getting Menu</div>   
+                ? 
+                ( <div className='menu-container'> 
+                {props.menu.map((item) => {
+                    return (
+                        <div className='menu-container__item-container'>
+                            <h1 className='item-container__food-name'>{item.item_name}</h1>
+                            <img 
+                                className='item-container__img' 
+                                src={item.item_image} 
+                                alt={item.id} 
+                            />
+                            <p className='item-container__description'>{item.item_description}</p>
+                            <h1 className='item-container__price'>{item.item_price}</h1>
+                        </div>
+                    )
+                })}
+                </div> )
+                : ( <div>Getting Menu</div> ) 
             }
         </div>
     )
@@ -31,7 +49,7 @@ const MainMenu = (props) => {
 
 // export default MainMenu;
 
-const mapStateToProps = state => ({ selectedTruck: state.selectedTruck });
+const mapStateToProps = state => ({ menu: state.menu });
 
 export default connect(mapStateToProps, actions)(MainMenu)
 

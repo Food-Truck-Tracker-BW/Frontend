@@ -78,7 +78,7 @@ const reducer = (state = intitialTruckState, action) => {
             return {
                 ...state,
                 fetchingMenu: false,
-                menu: action.payload.data.menu
+                menu: action.payload.data.menus
             }
         case GET_MENUS_FAIL:
             console.log('failure on get trucks')

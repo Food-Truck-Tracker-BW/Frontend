@@ -87,7 +87,7 @@ function SignUpForm() {
         
         delete userInput.passwordConfirm;
         
-        axios.post('http://food-truck-tracker-be.herokuapp.com/api/register', userInput)
+        axios.post('https://food-truck-tracker-be.herokuapp.com/api/register', userInput)
             .then((response) => {
                 console.log('registration response:', response)
                 localStorage.setItem('token', response.token)
