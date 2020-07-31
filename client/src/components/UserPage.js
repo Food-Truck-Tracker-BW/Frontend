@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 
 
 // * components
-import OperatorEditForm from '../components/OperatorEditForm';
+
+import UserInfo from './UserInfo'
 
 
 // * action creators
 import * as actions from '../actions/index';
 
 
-const OperatorPage = (props) => {
+const UserPage = (props) => {
 
     // const { id } = useParams();
     const [ isLoaded, setIsLoaded ] = useState(false);
@@ -29,10 +30,11 @@ const OperatorPage = (props) => {
         if (props.user) setIsLoaded(true)
     },[props.user])
 
+    console.log('props form user', props)
     return (
-        <div className='operator-page-container'>
+        <div className='user-page-container'>
             {isLoaded
-            ? <h1> user info </h1>
+            ? <UserInfo {...props.user}/>
             : <h1> getting user </h1>
             }
         </div>
@@ -41,4 +43,4 @@ const OperatorPage = (props) => {
 
 const mapStateToProps = state => ({ user: state.user });
 
-export default connect(mapStateToProps, actions)(OperatorPage)
+export default connect(mapStateToProps, actions)(UserPage)
