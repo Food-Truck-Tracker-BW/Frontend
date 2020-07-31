@@ -265,3 +265,9 @@ Html {
   height: 'auto';
 }
 
+.app-container__logo-img {
+	height: 200px;
+	width: 200px;
+	background-image: url('../images/image-logo.png');
+  	background-position: center;
+}

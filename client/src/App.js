@@ -1,6 +1,6 @@
 // * dependencies:
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -31,12 +31,34 @@ function App(props) {
 
   return (
     <div className="app-container">
-      <div className='app-container__header-img'></div>
+      
+      <Route path='/trucks'>
+        <nav className='app-container__nav-container'>
+          <Link to='/trucks'>Trucks</Link>
+          <Link to='/profile'>User Profile</Link>
+        </nav>
+      </Route>
+      
+      <Route path='/profile'>
+        <nav className='app-container__nav-container'>
+          <Link to='/trucks'>Trucks</Link>
+          <Link to='/profile'>User Profile</Link>
+        </nav>
+      </Route>
+      
+      <Route path='/truck'>
+        <nav className='app-container__nav-container'>
+          <Link to='/trucks'>Trucks</Link>
+          <Link to='/profile'>User Profile</Link>
+        </nav>
+      </Route>
+      
+      <div className='app-container__header-img'>
+        <div className='app-container__logo-img'></div>
+      </div>
 
-
-
-      <div className='header-img__logo'></div>
       <Switch>
+          
           <Route exact path='/'>
             {/* * conditionally renders form based on local state isNewUser */}
             {isNewUser
@@ -52,14 +74,23 @@ function App(props) {
                 </div>
             }
           </Route>
+          
           <PrivateRoute exact path='/trucks' component={TruckList} />
+          
           <Route 
-                path='/truck/:id/' 
-                render={() => (
-                    <ItemView />
-                )}
-            />
-          {/* <Route path='/trucks' component={TruckList} /> */}
+              path='/truck/:id/' 
+              render={() => (
+                  <ItemView />
+              )}
+          />
+
+          <Route 
+            exact 
+            path='/profile'
+            render={() => (
+              <div>profile page</div>
+            )}
+          />
       </Switch>
       
    </div>

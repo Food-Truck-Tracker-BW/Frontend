@@ -28,7 +28,7 @@ const MainMenu = (props) => {
                 ( <div className='menu-container'> 
                 {props.menu.map((item) => {
                     return (
-                        <div className='menu-container__item-container'>
+                        <div className='menu-container__item-container' key={item.id}>
                             <h1 className='item-container__food-name'>{item.item_name}</h1>
                             <img 
                                 className='item-container__img' 

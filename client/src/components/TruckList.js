@@ -44,16 +44,7 @@ const TruckList = (props) => {
                     className='list-container__ajax-message'
                     onClick={populate}
                 > View Trucks </button>)
-            }
-        
-            {/* <Route 
-                path='/truck/:id' 
-                render={() => (
-                    <ItemView truckArray={props.trucks} />
-                )}
-            /> */}
-            
-            
+            } 
         </div>
     )    
 };
