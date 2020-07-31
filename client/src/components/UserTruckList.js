@@ -47,7 +47,17 @@ const UserTruckList = (props) => {
                     <h1> Your Trucks: </h1>
 
                     {props.userTrucks.map((item) => {
-                        return <Link to={`/truck/${item.id}`} key={item.id}><TruckCard key={item.id} truck={item} /> </Link>
+                        return (
+                        <div>
+                            <Link to={`/truck/${item.id}`} key={item.id}>
+                                <TruckCard key={item.id} truck={item} /> 
+                            </Link>
+                            
+                            <Link to={`/truck/${item.id}/edit-truck`}>
+                                <button> Edit Truck </button>
+                            </Link>
+                        </div>
+                        )
                     })}
 
                 </div>

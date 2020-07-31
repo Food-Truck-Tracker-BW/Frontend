@@ -136,7 +136,22 @@ export const GET_MENU_ITEM_RATING = "GET_MENU_ITEM_RATING";
 // UPDATE TRUCK:
 // /api/truck/:id
 export const UPDATE_TRUCK = "UPDATE_TRUCK";
+export const UPDATE_TRUCK_START = "UPDATE_TRUCK_START"
+export const UPDATE_TRUCK_SUCCESS = "UPDATE_TRUCK_SUCCESS"
+export const UPDATE_TRUCK_FAIL = "UPDATE_TRUCK_FAIL"
 
+export const updateTruck = (userInput, id) => dispatch => {
+    dispatch({ type: UPDATE_TRUCK_START })
+    axios.post(`https://food-truck-tracker-be.herokuapp.com/api/truck/${id}`, userInput)
+    .then((response) => {
+        console.log(response);
+        dispatch({ type: UPDATE_TRUCK_SUCCESS, payload: response })
+    })
+    .catch((error) => {
+        console.log('update error', error)
+        dispatch({ type: UPDATE_TRUCK_FAIL, payload: error })
+    })
+}
 
 // (POST):
 

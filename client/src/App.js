@@ -23,6 +23,7 @@ import SignUpForm from './components/SignUpForm';
 import TruckList from './components/TruckList';
 import ItemView from './components/SingleTruckView';
 import UserPage from './components/UserPage';
+import OperatorProfile from './components/OperatorProfile';
 
 
 // * action creators
@@ -97,10 +98,14 @@ function App(props) {
           />
 
           <Route  
-            path='/profile/:id'
+            exact path='/profile/:id'
             component={UserPage}
           />
 
+          <Route
+            path='/truck/:id/edit-truck'
+            component={OperatorProfile}
+          />
 
       </Switch>
       
