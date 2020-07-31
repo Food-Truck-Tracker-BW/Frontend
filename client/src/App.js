@@ -15,6 +15,7 @@ import LoginPage from './components/LoginPage';
 import SignUpForm from './components/SignUpForm';
 import TruckList from './components/TruckList';
 import ItemView from './components/SingleTruckView';
+import OperatorPage from './components/OperatorPage'
 
 // * action creators
 import * as actions from './actions/index';
@@ -88,7 +89,7 @@ function App(props) {
             exact 
             path='/profile'
             render={() => (
-              <div>profile page</div>
+              <OperatorPage />
             )}
           />
       </Switch>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { axiosWAuth } from '../utils/axiosWAuth';
 
 // http://food-truck-tracker-be.herokuapp.com/
 
@@ -18,11 +19,47 @@ export const GET_DINER = "GET_DINERS";
 // GET ALL REGISTERED OPERATORS: /api/user/getOperators
 export const GET_OPERATOR = "GET_OPERATOR";
 
+
+// ! update for dynamic ID
 // GET USER BY ID: /api/user/:id
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const GET_USER_BY_ID_START = "GET_USER_BY_ID_START";
+export const GET_USER_BY_ID_SUCCESS = "GET_USER_BY_ID_SUCCESS";
+export const GET_USER_BY_ID_FAIL = "GET_USER_BY_ID_FAIL";
+export const getUserById = (id) => dispatch => {
+    dispatch( { type: GET_USER_BY_ID_START } )
+    axios.get(`https://food-truck-tracker-be.herokuapp.com/api/user/1`)
+    .then((response) => {
+        console.log(response);
+        dispatch({ type: GET_USER_BY_ID_SUCCESS, payload: response })
+    })
+    .catch((error) => {
+        console.log('get error', error)
+        dispatch({ type: GET_USER_BY_ID_FAIL, payload: error })
+    })
+}
 
+// ! need to revert back to taking dynamic ID 
 // GET ALL TRUCKS OWNED BY USER: api/user/:id/trucks
 export const GET_TRUCKS_BY_USER_ID = "GET_TRUCKS_BY_USER_ID";
+export const GET_TRUCKS_BY_USER_ID_START = "GET_TRUCKS_BY_USER_ID_START";
+export const GET_TRUCKS_BY_USER_ID_SUCCESS = "GET_TRUCKS_BY_USER_ID_SUCCESS";
+export const GET_TRUCKS_BY_USER_ID_FAIL = "GET_TRUCKS_BY_USER_ID_FAIL";
+export const getTruckByUserId = (id) => dispatch => {
+    dispatch( { type: GET_TRUCKS_BY_USER_ID_START } )
+    axiosWAuth()
+    .get(`https://food-truck-tracker-be.herokuapp.com/api/user/1/trucks`)
+    .then((response) => {
+        console.log(response);
+        dispatch({ type: GET_TRUCKS_BY_USER_ID_SUCCESS, payload: response })
+    })
+    .catch((error) => {
+        console.log('get error', error)
+        dispatch({ type: GET_TRUCKS_BY_USER_ID_FAIL, payload: error })
+    })
+}
+
+
 
 // TRUCKS(GET):
 // GET ALL TRUCKS: /api/truck/

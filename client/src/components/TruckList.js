@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 // * components:
 import TruckCard from './TruckCard';
-import ItemView from './SingleTruckView';
+// import ItemView from './SingleTruckView';
 
 // * action creators
 import * as actions from '../actions/index';
@@ -19,7 +19,6 @@ const TruckList = (props) => {
         if (props.trucks.length) setIsLoaded(true);
     }, [props.trucks])
 
-    // console.log('trucks:', props.trucks)
 
     const populate = (event) => {
         event.preventDefault()
@@ -52,13 +51,3 @@ const TruckList = (props) => {
 const mapStateToProps = state => ({ trucks: state.trucks });
 
 export default connect(mapStateToProps, actions)(TruckList)
-
-
-
-// const handleSubmit = e => {
-//     e.preventDefault();
-//     // console.log(formState);
-//     axios.post("https://reqres.in/api/users", formState)
-//     .then(res => props.(res.data))
-//     .catch(err => console.log(err));
-// }

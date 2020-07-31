@@ -146,13 +146,15 @@ const LoginPage = () =>  {
          })
     }
 
+    // ! need PJ to to return user ID in payload 
+
     // * submit handler for DB .post to get token and set to localstorage 
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post('https://food-truck-tracker-be.herokuapp.com/api/login', userInput)
         .then((response) => {
-            console.log(response.data)
-            localStorage.setItem('token', response.data)
+            console.log('login response',response.data)
+            localStorage.setItem('token', response.data.token)
             window.location.assign('/trucks')
         })
         .catch((error) =>  {
