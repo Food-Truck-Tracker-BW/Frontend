@@ -6,17 +6,26 @@ import { connect } from 'react-redux';
 
 // * components
 
-import UserInfo from './UserInfo'
+import UserInfo from './UserInfo';
 
 
 // * action creators
 import * as actions from '../actions/index';
 
 
+// * mock user 
+const testuser = {
+    id:	2,
+    username: "testUser2",
+    email: "test2@yahoo.com",
+    password: "$2a$14$vaAafHs8fVVtW7suW8O.bOIJD3jnc2dhMh9mffW0OdCL.2LAlBIzG",
+    is_operator: false
+}
+
 const UserPage = (props) => {
 
-    // const { id } = useParams();
-    const [ isLoaded, setIsLoaded ] = useState(false);
+    const { id } = useParams();
+    const [ isLoaded, setIsLoaded ] = useState(true);
 
     // * useEffect sends dispatch to set the user to state 
     // ! add ID once possible 
@@ -34,9 +43,19 @@ const UserPage = (props) => {
     return (
         <div className='user-page-container'>
             {isLoaded
-            ? <UserInfo {...props.user}/>
+            // ? <UserInfo userinfo={props.user}/>
+            ? <UserInfo userinfo={testuser}/>
             : <h1> getting user </h1>
             }
+            
+            <Route exact path='/profile/:id'>
+                <Link to={`/profile/${id}/edit`}>
+                    <button> Edit Info </button>
+                </Link>
+            </Route>
+            
+
+           
         </div>
     )
 };

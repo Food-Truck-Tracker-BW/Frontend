@@ -26,11 +26,12 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const GET_USER_BY_ID_START = "GET_USER_BY_ID_START";
 export const GET_USER_BY_ID_SUCCESS = "GET_USER_BY_ID_SUCCESS";
 export const GET_USER_BY_ID_FAIL = "GET_USER_BY_ID_FAIL";
-export const getUserById = (id) => dispatch => {
+export const getUserById = () => dispatch => {
     dispatch( { type: GET_USER_BY_ID_START } )
-    axios.get(`https://food-truck-tracker-be.herokuapp.com/api/user/1`)
+    axiosWAuth()
+    .get(`https://food-truck-tracker-be.herokuapp.com/api/user/2`)
     .then((response) => {
-        console.log(response);
+        console.log('sucess message', response);
         dispatch({ type: GET_USER_BY_ID_SUCCESS, payload: response })
     })
     .catch((error) => {
@@ -71,7 +72,7 @@ export const getTrucks = () => dispatch => {
     dispatch( { type: GET_ALL_TRUCKS_START } )
     axios.get('https://food-truck-tracker-be.herokuapp.com/api/truck/')
     .then((response) => {
-        console.log(response);
+        console.log('all trucks reponse',response);
         dispatch({ type: GET_ALL_TRUCKS_SUCCESS, payload: response })
     })
     .catch((error) => {

@@ -4,6 +4,13 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
+// ! render truck list with filter of user ID 
+// ! render in operator profile 
+// ! edit menu forms from truck menus
+// ! edit truck form operator page 
+// ! style 
+// ! get back user ID in login / write to state OR mock operation 
+
 // * utility  comp
 import PrivateRoute from './components/PrivateRoute';
 
@@ -15,7 +22,8 @@ import LoginPage from './components/LoginPage';
 import SignUpForm from './components/SignUpForm';
 import TruckList from './components/TruckList';
 import ItemView from './components/SingleTruckView';
-import OperatorPage from './components/OperatorPage'
+import UserPage from './components/UserPage';
+
 
 // * action creators
 import * as actions from './actions/index';
@@ -36,23 +44,26 @@ function App(props) {
       <Route path='/trucks'>
         <nav className='app-container__nav-container'>
           <Link to='/trucks'>Trucks</Link>
-          <Link to='/profile'>User Profile</Link>
+          <Link to='/profile/2'>User Profile</Link>
+         
         </nav>
       </Route>
       
       <Route path='/profile'>
         <nav className='app-container__nav-container'>
           <Link to='/trucks'>Trucks</Link>
-          <Link to='/profile'>User Profile</Link>
+          <Link to='/profile/2'>User Profile</Link>
+         
         </nav>
       </Route>
       
       <Route path='/truck'>
         <nav className='app-container__nav-container'>
           <Link to='/trucks'>Trucks</Link>
-          <Link to='/profile'>User Profile</Link>
+          <Link to='/profile/2'>User Profile</Link>
         </nav>
       </Route>
+
       
       <div className='app-container__header-img'>
         <div className='app-container__logo-img'></div>
@@ -85,13 +96,12 @@ function App(props) {
               )}
           />
 
-          <Route 
-            exact 
-            path='/profile'
-            render={() => (
-              <OperatorPage />
-            )}
+          <Route  
+            path='/profile/:id'
+            component={UserPage}
           />
+
+
       </Switch>
       
    </div>

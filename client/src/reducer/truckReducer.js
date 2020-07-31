@@ -9,6 +9,13 @@ import {GET_ALL_TRUCK_BY_ID_FAIL} from '../actions/index';
 import {GET_MENUS_START} from '../actions/index';
 import {GET_MENUS_SUCCESS} from '../actions/index';
 import {GET_MENUS_FAIL} from '../actions/index';
+import {GET_USER_BY_ID_START} from '../actions/index';
+import {GET_USER_BY_ID_SUCCESS} from '../actions/index';
+import {GET_USER_BY_ID_FAIL} from '../actions/index';
+import {GET_TRUCKS_BY_USER_ID_START} from '../actions/index';
+import {GET_TRUCKS_BY_USER_ID_SUCCESS} from '../actions/index';
+import {GET_TRUCKS_BY_USER_ID_FAIL} from '../actions/index';
+
 
 
 const intitialTruckState = {
@@ -88,6 +95,50 @@ const reducer = (state = intitialTruckState, action) => {
                 errors: action.payload.error
         }
 
+
+          // ! getting user:
+          case GET_USER_BY_ID_START:
+            console.log('get users AJAX start')
+            return {
+                ...state,
+                fetchingUsers: true
+            }
+        case GET_USER_BY_ID_SUCCESS:
+            console.log('get users AJAX success', action)
+            return {
+                ...state,
+                fetchingUsers: false,
+                user:  action.payload.data.user
+            }
+        case GET_USER_BY_ID_FAIL:
+            console.log('get users AJAX failed', action)
+            return {
+                ...state,
+                fetchingUsers: false,
+                error: action.payload.error
+            }
+        
+            // ! getting user trucks:
+        case GET_TRUCKS_BY_USER_ID_START:
+            console.log('get users AJAX start')
+            return {
+                ...state,
+                fetchingUsers: true
+            }
+        case GET_TRUCKS_BY_USER_ID_SUCCESS:
+            console.log('get users trucks AJAX success', action.payload)
+            return {
+                ...state,
+                fetchingUsers: false,
+                userTrucks:  action.payload.data.trucks
+            }
+        case GET_TRUCKS_BY_USER_ID_FAIL:
+            console.log('get users AJAX failed', action)
+            return {
+                ...state,
+                fetchingUsers: false,
+                error: action.payload.error
+            }
 
         default:
             return state;
