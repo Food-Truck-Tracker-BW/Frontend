@@ -1,48 +1,129 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-
 /* Set every element's box-sizing to border-box */
 * {
+
     box-sizing: border-box;
 }
 
@@ -50,12 +131,190 @@ Html{
 	font-size: 62.5%;
 }
 
-.app-container__header-img {
-    background-image: url('../images/food-truck-1024x683.jpg');
-    background-position: center;
-    width: 100%;
-    height: 250px;
-    border: solid black 5px;
+body {
+  
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+Html {
+  font-size: 62.5%;
 }
 
 
+// * * reset end * * // 
+
+//  *  variables * //
+@deepblue: #2A2A38;
+@slate:  #304455;
+@lightblue: #298392;
+@seafoam: #76B591;
+@white:  #FFFCF7;
+
+
+
+// * form styling 
+.signup-container {
+	background: whitesmoke;
+	border-radius: 10px;
+	width: 500px;
+	padding: 50px;
+	} 
+	
+	form {
+	  display: flex;
+	  flex-direction: column;
+	  width: 90%;
+	  max-width: 300px;
+	  margin: 0 auto;
+	} 
+	
+	label {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: flex-start;
+	  margin: 10px 0;
+	  font-size: 1.4rem;
+	  color: blueviolet;
+	}
+	
+	input,
+	select,
+	textarea {
+	  width: 100%;
+	  margin: 5px 0 0;
+	  display: block;
+	  width: 100%;
+	  border: 2px solid rgba(0, 0, 0, 0.2);
+	  border-radius: 5px;
+	  padding: 5px;
+	  transition: all 0.3s;
+	  font-size: 1.4rem;
+	  letter-spacing: 0.5px;
+	  background-color: white;
+	}
+	select {
+	  height: 40px;
+	  width: 325px;
+	}
+	
+	select:focus {
+	  outline: none;
+	  border-color: #1ee7e2;
+	}
+	
+	input:focus {
+	  outline: none;
+	  border-color: #1ee7e2;
+	}
+	
+	input:placeholder {
+	  color: black
+	}
+	
+	button {
+	  width: 150px;
+	  display: inline-block;
+	  padding: 8px 11px;
+	  font-size: 1.2rem;
+	  text-transform: uppercase;
+	  border: 0;
+	  border-radius: 5px;
+	  letter-spacing: 2px;
+	  outline: none;
+	  background-color: #4dd0e1;
+	  background-image: linear-gradient(to right, #4dd0e1, #1ee7e2);
+	  color: #fff;
+	  cursor: pointer;
+	  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	}
+	
+	button:hover {
+	  background-image: none;
+	  background-color: #4dd0e1;
+	  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+	}
+	
+	button:disabled {
+	  background-image: none;
+	  background-color: white;
+	  border: 1px solid rgba(0, 0, 0, 0.1);
+	  color: rgba(0, 0, 0, 0.1);
+	  cursor: not-allowed;
+	}
+	
+	.error {
+	  font-size: 1.2rem;
+	  color: red;
+	}
+	
+	 .checkbox {
+	  display: inline-block;
+	  align-self: self-start;
+	}
+	
+	.checkbox input {
+	  width: 15px;
+	  display: inline-block;
+	  margin-right: 5px;
+	} 
+
+#root {
+	background-color: @deepblue;
+}
+
+.app-container__logo-img {
+	height: 100%;
+	width: 100%;
+	background-image: url('../images/image-logo.png');
+  	background-position: center;
+}
+
+.app-container__header-img {
+	background-image: url('../images/food-truck-1024x683.jpg');
+	background-position: center;
+	width: 100%;
+	height: 250px;
+	border: solid @slate 5px;
+}
+
+.app-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0 auto;
+
+	
+	
+
+}
+
+.app-container__nav-container {
+	height: 50px;
+	display: flex;
+	justify-content: space-around;
+	background-color: @slate;
+
+	a {
+		text-decoration: none;
+		margin-top: 1.5%;
+		padding:  0 auto;
+		font-size: 2rem;
+		color: @white;
+	}
+
+	a:hover {
+		color: @seafoam;
+	}
+
+}
+
+.app-container__login-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}

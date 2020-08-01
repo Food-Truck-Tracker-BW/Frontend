@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Link, useParams } from 'react-router-dom'
 
 import OperatorEditForm from './OperatorEditForm';
 import UserTruckList from './UserTruckList';
@@ -10,12 +10,19 @@ import UserTruckList from './UserTruckList';
 
 const UserInfo = (props) => {
 
-
+    const { id } = useParams();
 
     return (
     <div>
         <h1> {props.userinfo.username} </h1>
         <h1> {props.userinfo.email} </h1>
+
+
+        <Route exact path='/profile/:id'>
+            <Link to={`/profile/${id}/edit`}>
+                <button> Edit Account </button>
+            </Link>
+        </Route>
 
         <Route 
             path='/profile/:id/edit'

@@ -53,9 +53,9 @@ const UserTruckList = (props) => {
                                 <TruckCard key={item.id} truck={item} /> 
                             </Link>
                             
-                            <Link to={`/truck/${item.id}/edit-truck`}>
+                            {/* <Link to={`/truck/${item.id}/edit-truck`}>
                                 <button> Edit Truck </button>
-                            </Link>
+                            </Link> */}
                         </div>
                         )
                     })}

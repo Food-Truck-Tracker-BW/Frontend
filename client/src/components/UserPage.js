@@ -44,16 +44,22 @@ const UserPage = (props) => {
         <div className='user-page-container'>
             {isLoaded
             // ? <UserInfo userinfo={props.user}/>
-            ? <UserInfo userinfo={testuser}/>
+            ? (
+                <div className='user-page-container'>
+                    <UserInfo userinfo={testuser}/>
+                    
+                    {/* <Route exact path='/profile/:id'>
+                        <Link to={`/profile/${id}/edit`}>
+                            <button> Edit Account </button>
+                        </Link>
+                    </Route> */}
+                </div>
+            )
             : <h1> getting user </h1>
             }
             
-            <Route exact path='/profile/:id'>
-                <Link to={`/profile/${id}/edit`}>
-                    <button> Edit Info </button>
-                </Link>
-            </Route>
-            
+           
+
 
            
         </div>

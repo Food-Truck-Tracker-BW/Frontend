@@ -4,10 +4,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-// ! render truck list with filter of user ID 
-// ! render in operator profile 
 // ! edit menu forms from truck menus
-// ! edit truck form operator page 
 // ! style 
 // ! get back user ID in login / write to state OR mock operation 
 
@@ -102,13 +99,18 @@ function App(props) {
             component={UserPage}
           />
 
-          <Route
-            path='/truck/:id/edit-truck'
+      </Switch>
+
+      <Route
+            path='/profile/:id/edit-truck'
             component={OperatorProfile}
           />
+        
+        <Route  
+            path='/profile/:id/edit'
+            component={UserPage}
+          />
 
-      </Switch>
-      
    </div>
 
   )

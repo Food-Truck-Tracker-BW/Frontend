@@ -35,7 +35,7 @@ const defaultErrorState = {
     departureTime: '',
 }
 
-const MainObject = () => {
+const OperatorEditForm = () => {
 
 
     const [formState, setFormState] = useState(defaultFormState);
@@ -106,7 +106,7 @@ const MainObject = () => {
 };
 
 
-export default MainObject;
+export default OperatorEditForm;
 
 {/* <label>location
 <input type='text' name='location' onChange={handleChange} data-cy='location' value={formState.location} />
