@@ -1,15 +1,18 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useParams } from "react-router-dom";
 
 
 
 import ItemDescription from "../components/truckDescription";
+import MainMenu from './MainMenu';
 
 // * action creators
 
 
 function Item(props) {
   
+  const {id} = useParams();
+
   // * used to find truck being clicked in 
   // const item = items.find(thing => `${props.trucks.id}` === match.params.id);
 
@@ -28,16 +31,27 @@ function Item(props) {
           <h2>{props.name}</h2>
         </div>
       </div>
-      
-      <Route exact path='/truck/:id'>
-        <Link to={`/truck/${props.id}/description`}> 
-          <button> About Us </button> 
-        </Link>
-      </Route>
+
+     <div className='item-wrapper__nav-buttons'>
+        <Route exact path='/truck/:id'>
+          <Link to={`/truck/${props.id}/description`}> 
+            <button> About Us </button> 
+          </Link>
+        </Route>
+
+        <Route exact path='/truck/:id'>
+          <Link to={`/truck/${id}/menu`}>
+            <button> See Menu </button>
+          </Link>
+        </Route>
+      </div>
 
       <Route path={`/truck/${props.id}/description`} component={() => (
         <ItemDescription {...props} />
       )} />
+
+      <Route path='/truck/:id/menu' component={MainMenu} />
+
     </div>
   );
 }

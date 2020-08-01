@@ -75,9 +75,9 @@ function App(props) {
               ? 
                 <SignUpForm /> 
               :
-                <div>
+                <div className='app-container__login-container'>
                   <button 
-                  className='app-container__button'
+                  className='login-container__button'
                   onClick={launchSignUp}
                   > I'm a New User </button> 
                   <LoginPage />

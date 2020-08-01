@@ -56,12 +56,7 @@ const UserPage = (props) => {
                 </div>
             )
             : <h1> getting user </h1>
-            }
-            
-           
-
-
-           
+            } 
         </div>
     )
 };

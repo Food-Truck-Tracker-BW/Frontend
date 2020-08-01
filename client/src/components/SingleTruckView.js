@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 // * components
 import Truck from './truck';
-import MainMenu from './MainMenu';
+
 
 
 // * action creators
@@ -66,14 +66,7 @@ const ItemView = (props) => {
       {isLoaded 
       ? <Truck {...props.selectedTruck} />
       : <div>still loading</div>
-      }
-      <Route exact path='/truck/:id'>
-        <Link to={`/truck/${id}/menu`}>
-          <button> See Menu </button>
-        </Link>
-      </Route>
-
-      <Route path='/truck/:id/menu' component={MainMenu} />
+      }    
     </div>
   )
 };
